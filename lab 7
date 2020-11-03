@@ -1,1 +1,38 @@
-
+program zad_20;
+uses math;
+//Уточнение корней уравнений
+var xl, xp, x0, x1, dx, x00, eps, Fl, Fp, Fx, x: real;
+n1, n2, k: integer;
+begin
+Writeln('Введите xl, xp, eps, k');
+Readln(xl, xp, eps, k);
+Writeln;
+//Метод простых итераций
+x0:=(xl+xp)/2;
+n1:=0;
+repeat
+x1:=exp(x0/2)-3;
+dx:=abs(x0-x1);
+x00:=x0;
+x0:=x1;
+n1:=n1+1;
+until dx<eps;
+Writeln('Метод простых итераций');
+Writeln;
+Writeln('x1 = ', x1:k+3:k, ' ':3, 'x0 = ', x00:k+3:k, ' ':3, 'n1 = ', n1:4);
+writeln;
+//Метод половинного деления
+Fl:=exp(xl/2)-xl-3;
+n2:=0;
+repeat
+x:=(xl+xp)/2;
+Fx:=exp(x/2)-x-3;
+if Fx*Fl>0 then xl:=x else xp:=x;
+n2:=n2+1;
+until abs(xp-xl)<eps;
+Writeln('Метод половинного деления');
+Writeln;
+Writeln('xl = ', xl:k+3:k, ' ':3, 'xp = ', xp:k+3:k, ' ':3, 'n2 = ', n2:4);
+writeln;
+readln;
+end.    
